@@ -39,43 +39,42 @@ $pdf->SetFont('Arial','',12);
 $pdf->Cell(0,8,'Declaration Token: '.$data['qr_token'],0,1,'C');
 $pdf->Ln(5);
 
-// Applicant info
-$pdf->SetFont('Arial','B',12);
-$pdf->Cell(50,8,'Applicant Name:',1);
-$pdf->SetFont('Arial','',12);
-$pdf->Cell(0,8,$data['applicant_name'],1,1);
+// Applicant info block
+function addField($pdf, $label, $value) {
+    $pdf->SetFont('Arial','B',12);
+    $pdf->Cell(50,8,$label,1);
+    $pdf->SetFont('Arial','',12);
+    $pdf->Cell(0,8,$value,1,1);
+}
 
-$pdf->SetFont('Arial','B',12);
-$pdf->Cell(50,8,'Date of Birth:',1);
-$pdf->SetFont('Arial','',12);
-$pdf->Cell(0,8,$data['dob'],1,1);
-
-$pdf->SetFont('Arial','B',12);
-$pdf->Cell(50,8,'Gender:',1);
-$pdf->SetFont('Arial','',12);
-$pdf->Cell(0,8,$data['gender'],1,1);
-
-$pdf->SetFont('Arial','B',12);
-$pdf->Cell(50,8,'LGA:',1);
-$pdf->SetFont('Arial','',12);
-$pdf->Cell(0,8,$data['lga'],1,1);
-
-$pdf->SetFont('Arial','B',12);
-$pdf->Cell(50,8,'Declarant Name:',1);
-$pdf->SetFont('Arial','',12);
-$pdf->Cell(0,8,$data['declarant_name'],1,1);
+addField($pdf, 'Applicant Name:', $data['applicant_name']);
+addField($pdf, 'Date of Birth:', $data['dob']);
+addField($pdf, 'Gender:', $data['gender']);
+addField($pdf, 'LGA:', $data['lga']);
+addField($pdf, 'Father\'s Name:', $data['father_fullname']);
+addField($pdf, 'Mother\'s Name:', $data['mother_fullname']);
+addField($pdf, 'Place of Birth:', $data['place_of_birth']);
+addField($pdf, 'State of Origin:', $data['state_of_origin']);
+addField($pdf, 'Declarant Name:', $data['declarant_name']);
 
 // Photo (optional)
 if(!empty($data['photo']) && file_exists('uploads/'.$data['photo'])){
     $pdf->Ln(5);
+    $pdf->SetFont('Arial','B',12);
     $pdf->Cell(0,8,'Photo:',0,1);
     $pdf->Image('uploads/'.$data['photo'], 80, $pdf->GetY(), 50);
 }
 
 // Footer note
-$pdf->Ln(20);
+$pdf->Ln(25);
 $pdf->SetFont('Arial','I',10);
-$pdf->MultiCell(0,5,"This is an official H Declaration issued by the High Court of Kaduna State. Verify using the token on the official portal.",0,'C');
+$pdf->MultiCell(
+    0,
+    5,
+    "This is an official H Declaration issued by the High Court of Kaduna State. Verify using the token on the official portal.",
+    0,
+    'C'
+);
 
-// Output PDF to browser
+// Output PDF
 $pdf->Output('I','H_Declaration_'.$data['qr_token'].'.pdf');

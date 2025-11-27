@@ -64,6 +64,9 @@ body {
 img {
     border-radius: 5px;
 }
+.alert-success p {
+    color: #000;
+}
 </style>
 </head>
 <body>
@@ -90,20 +93,30 @@ img {
 
         <hr class="my-4">
 
-        <!-- Result -->
+        <!-- Message -->
         <?php if($message): ?>
             <div class="alert alert-danger"><?= htmlspecialchars($message) ?></div>
         <?php endif; ?>
 
+        <!-- Display Details -->
         <?php if($declaration): ?>
             <div class="alert alert-success">
                 <h5>Declaration Found!</h5>
+
                 <p><strong>Applicant Name:</strong> <?= htmlspecialchars($declaration['applicant_name']) ?></p>
                 <p><strong>DOB:</strong> <?= $declaration['dob'] ?></p>
                 <p><strong>LGA:</strong> <?= htmlspecialchars($declaration['lga']) ?></p>
                 <p><strong>Gender:</strong> <?= $declaration['gender'] ?></p>
+
+                <p><strong>Father's Full Name:</strong> <?= htmlspecialchars($declaration['father_fullname']) ?></p>
+                <p><strong>Mother's Full Name:</strong> <?= htmlspecialchars($declaration['mother_fullname']) ?></p>
+                <p><strong>Place of Birth:</strong> <?= htmlspecialchars($declaration['place_of_birth']) ?></p>
+                <p><strong>State of Origin:</strong> <?= htmlspecialchars($declaration['state_of_origin']) ?></p>
+
                 <p><strong>Declarant:</strong> <?= htmlspecialchars($declaration['declarant_name']) ?></p>
-                <p><strong>Token:</strong> <?= $declaration['qr_token'] ?></p>
+
+                <p><strong>Token:</strong> <?= htmlspecialchars($declaration['qr_token']) ?></p>
+
                 <?php if(!empty($declaration['photo']) && file_exists('uploads/'.$declaration['photo'])): ?>
                     <p><strong>Photo:</strong></p>
                     <img src="uploads/<?= $declaration['photo'] ?>" alt="Applicant Photo" style="width:100px;">
