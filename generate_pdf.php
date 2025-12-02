@@ -57,6 +57,11 @@ addField($pdf, 'Place of Birth:', $data['place_of_birth']);
 addField($pdf, 'State of Origin:', $data['state_of_origin']);
 addField($pdf, 'Declarant Name:', $data['declarant_name']);
 
+// **New field: Date of Insurance**
+if(!empty($data['date_of_insurance'])){
+    addField($pdf, 'Date of Insurance:', $data['date_of_insurance']);
+}
+
 // Photo (optional)
 if(!empty($data['photo']) && file_exists('uploads/'.$data['photo'])){
     $pdf->Ln(5);
@@ -71,10 +76,11 @@ $pdf->SetFont('Arial','I',10);
 $pdf->MultiCell(
     0,
     5,
-    "This is an official H Declaration issued by the High Court of Kaduna State. Verify using the token on the official portal.",
+    "This is an official Age Declaration issued by the High Court of Kaduna State. Verify using the token on the official portal.",
     0,
     'C'
 );
 
 // Output PDF
 $pdf->Output('I','H_Declaration_'.$data['qr_token'].'.pdf');
+?>

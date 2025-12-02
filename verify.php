@@ -73,7 +73,7 @@ img {
 
 <div class="container d-flex justify-content-center align-items-center" style="min-height:100vh;">
     <div class="card p-4" style="width: 100%; max-width: 500px;">
-        <h3 class="text-center mb-4 text-primary">Verify H Declaration</h3>
+        <h3 class="text-center mb-4 text-primary">Verify Age Declaration</h3>
 
         <!-- Form -->
         <form method="POST">

@@ -11,7 +11,7 @@ $recentDeclarations = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as
 <div class="container-fluid mt-4">
     <!-- Page Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="text-primary fw-bold">Dashboard - H Declarations</h2>
+        <h2 class="text-primary fw-bold">Dashboard - Age Declarations</h2>
         <a href="new_declaration.php" class="btn btn-success btn-lg shadow-sm">
             <i class="bi bi-plus-circle"></i> New Declaration
         </a>
