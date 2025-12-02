@@ -45,26 +45,22 @@ INSERT INTO `admin` (`id`, `username`, `password`) VALUES
 --
 -- Table structure for table `declarations`
 --
-
 CREATE TABLE `declarations` (
-  `id` int(11) NOT NULL,
-  `applicant_name` varchar(150) NOT NULL,
-  `address` text NOT NULL,
-  `lga` varchar(100) NOT NULL,
-  `dob` date NOT NULL,
-  `gender` varchar(10) NOT NULL,
-  `declarant_name` varchar(150) NOT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `qr_token` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `declarations`
---
-
-INSERT INTO `declarations` (`id`, `applicant_name`, `address`, `lga`, `dob`, `gender`, `declarant_name`, `photo`, `qr_token`, `created_at`) VALUES
-(1, 'Muhammad Ibrahim Musa', '', 'Zaria', '2004-12-07', 'Male', 'Isa', '1762840230_6912cea6ae147.jpg', '2dac6e705c', '2025-11-11 05:50:30');
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `applicant_name` VARCHAR(255) NOT NULL,
+    `dob` DATE NOT NULL,
+    `lga` VARCHAR(255) NOT NULL,
+    `gender` ENUM('Male','Female') NOT NULL,
+    `father_fullname` VARCHAR(255) NOT NULL,
+    `mother_fullname` VARCHAR(255) NOT NULL,
+    `place_of_birth` VARCHAR(255) NOT NULL,
+    `state_of_origin` VARCHAR(255) NOT NULL,
+    `declarant_name` VARCHAR(255) NOT NULL,
+    `photo` VARCHAR(255) DEFAULT NULL,
+    `qr_token` VARCHAR(20) NOT NULL UNIQUE,
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
